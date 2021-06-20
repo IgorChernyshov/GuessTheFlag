@@ -23,6 +23,8 @@ class ViewController: UIViewController {
 	// MARK: - Lifecycle
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(didTapScoreButton))
+
 		[button1, button2, button3].forEach {
 			$0?.layer.borderWidth = 1
 			$0?.layer.borderColor = UIColor.lightGray.cgColor
@@ -68,6 +70,12 @@ class ViewController: UIViewController {
 			alertController.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
 			present(alertController, animated: true)
 		}
+	}
+
+	@objc func didTapScoreButton() {
+		let alertController = UIAlertController(title: "Your score is \(score)", message: "In case like you can't read it in the navigation bar", preferredStyle: .alert)
+		alertController.addAction(UIAlertAction(title: "M'kay", style: .default))
+		present(alertController, animated: true)
 	}
 }
 
