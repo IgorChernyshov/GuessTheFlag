@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bjn-d9-mDm">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -13,25 +13,34 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="GuessTheFlag" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WBZ-XC-GrT">
-                                <rect key="frame" x="107" y="100" width="200" height="100"/>
+                                <rect key="frame" x="95" y="100" width="200" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="WBZ-XC-GrT" secondAttribute="height" multiplier="2:1" id="OsW-HX-TjH"/>
+                                </constraints>
                                 <state key="normal" image="us"/>
                                 <connections>
                                     <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GBH-M7-6EW"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mtK-oR-UcL">
-                                <rect key="frame" x="107" y="230" width="200" height="100"/>
+                                <rect key="frame" x="95" y="230" width="200" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="mtK-oR-UcL" secondAttribute="height" multiplier="2:1" id="b6O-w8-dbm"/>
+                                </constraints>
                                 <state key="normal" image="russia"/>
                                 <connections>
                                     <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="I7P-oT-HEg"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uTI-N3-Pgs">
-                                <rect key="frame" x="107" y="360" width="200" height="100"/>
+                                <rect key="frame" x="95" y="360" width="200" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="uTI-N3-Pgs" secondAttribute="height" multiplier="2:1" id="5H6-B6-dYa"/>
+                                </constraints>
                                 <state key="normal" image="spain"/>
                                 <connections>
                                     <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4RO-ec-WOW"/>
@@ -42,7 +51,10 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="WBZ-XC-GrT" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="12" id="BU1-Zy-Sc5"/>
+                            <constraint firstItem="uTI-N3-Pgs" firstAttribute="height" secondItem="mtK-oR-UcL" secondAttribute="height" id="WOC-5o-VeS"/>
+                            <constraint firstItem="mtK-oR-UcL" firstAttribute="height" secondItem="WBZ-XC-GrT" secondAttribute="height" id="ZCr-Xc-IRa"/>
                             <constraint firstItem="uTI-N3-Pgs" firstAttribute="top" secondItem="mtK-oR-UcL" secondAttribute="bottom" constant="30" id="ZYh-uE-rR2"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="uTI-N3-Pgs" secondAttribute="bottom" constant="16" id="hFr-5q-ccs"/>
                             <constraint firstItem="mtK-oR-UcL" firstAttribute="top" secondItem="WBZ-XC-GrT" secondAttribute="bottom" constant="30" id="mcd-VE-RdQ"/>
                             <constraint firstItem="mtK-oR-UcL" firstAttribute="centerX" secondItem="WBZ-XC-GrT" secondAttribute="centerX" id="scB-sJ-8gk"/>
                             <constraint firstItem="uTI-N3-Pgs" firstAttribute="centerX" secondItem="mtK-oR-UcL" secondAttribute="centerX" id="wvi-3s-6KA"/>
@@ -66,7 +78,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bjn-d9-mDm" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="1Hi-vJ-T0N">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
