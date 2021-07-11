@@ -58,7 +58,12 @@ class ViewController: UIViewController {
 
 		questionsAnswered += 1
 		if questionsAnswered >= 5 {
-			let alertController = UIAlertController(title: "Game Over", message: "You scored \(score) of \(questionsAnswered)", preferredStyle: .alert)
+			let highestScoreKey = "highestScore"
+			let highestScore = UserDefaults.standard.integer(forKey: highestScoreKey)
+			if self.score > highestScore {
+				UserDefaults.standard.set(self.score, forKey: highestScoreKey)
+			}
+			let alertController = UIAlertController(title: "Game Over", message: "You scored \(score). Your highest score is \(highestScore) so far.", preferredStyle: .alert)
 			alertController.addAction(UIAlertAction(title: "Reset", style: .default) { _ in
 				self.score = 0
 				self.questionsAnswered = 0
