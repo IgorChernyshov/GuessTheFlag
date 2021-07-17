@@ -46,6 +46,12 @@ class ViewController: UIViewController {
 	@IBAction func buttonTapped(_ sender: UIButton) {
 		var title: String
 		var message: String?
+		UIView.animate(withDuration: 0.2, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 5, options: [.autoreverse]) {
+			sender.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+		} completion: { _ in
+			sender.transform = .identity
+		}
+
 		if sender.tag == correctAnswer {
 			title = "Correct!"
 			message = nil
