@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import NotificationCenter
 
 class ViewController: UIViewController {
 
@@ -15,15 +16,17 @@ class ViewController: UIViewController {
 	@IBOutlet var button3: UIButton!
 
 	// MARK: - Properties
-	var score = 0
-	var correctAnswer = 0
-	var questionsAnswered = 0
-	var countries: [String] = ["estonia", "france", "germany", "ireland", "italy", "monaco", "nigeria", "poland", "russia", "spain", "uk", "us"]
+	private let notificationCenter = UNUserNotificationCenter.current()
+	private var score = 0
+	private var correctAnswer = 0
+	private var questionsAnswered = 0
+	private var countries: [String] = ["estonia", "france", "germany", "ireland", "italy", "monaco", "nigeria", "poland", "russia", "spain", "uk", "us"]
 
 	// MARK: - Lifecycle
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(didTapScoreButton))
+		configureNotifications()
 
 		[button1, button2, button3].forEach {
 			$0?.layer.borderWidth = 1
@@ -88,5 +91,39 @@ class ViewController: UIViewController {
 		alertController.addAction(UIAlertAction(title: "M'kay", style: .default))
 		present(alertController, animated: true)
 	}
-}
 
+	// MARK: - Notifications
+	private func configureNotifications() {
+		requestNotificationsPermission() { [weak self] in
+			self?.notificationCenter.removeAllPendingNotificationRequests()
+			self?.scheduleNotifications()
+		}
+	}
+
+	private func requestNotificationsPermission(completion: @escaping () -> Void) {
+		notificationCenter.requestAuthorization(options: [.alert, .sound]) { result, error in
+			if result {
+				print("Permissions granted")
+				completion()
+			} else {
+				print("No luck")
+			}
+		}
+	}
+
+	private func scheduleNotifications() {
+		let content = UNMutableNotificationContent()
+		content.title = "Go play the game"
+		content.body = "Now! It's fun and educational"
+		content.categoryIdentifier = "play"
+		content.sound = .default
+
+		var dateComponents = DateComponents()
+		dateComponents.hour = Calendar.current.component(.hour, from: Date())
+		dateComponents.minute = Calendar.current.component(.minute, from: Date())
+		let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+
+		let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+		notificationCenter.add(request)
+	}
+}
